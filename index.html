@@ -97,7 +97,7 @@
               <label for="runs">Monte-Carlo Läufe</label>
               <input id="runs" type="number" min="100" max="5000" step="100" value="1000">
             </div>
-            <div style="display:flex;align-items:end;gap:8px">
+            <div style="display:flex;align-items:end;gap:8px;flex-wrap:wrap">
               <button id="reroll" type="button" class="btn">Einzelpfad neu würfeln</button>
               <button id="runMC" type="button" class="btn">Monte-Carlo starten</button>
             </div>
@@ -121,15 +121,18 @@
           <div id="fvAfterTax" class="value dim">—</div>
         </div>
 
-        <canvas id="chart" width="900" height="240" aria-label="Wachstum über die Zeit"></canvas>
+        <div id="chartWrap">
+          <canvas id="chart" width="1000" height="340" aria-label="Wachstum über die Zeit"></canvas>
+          <div id="hoverTip" class="hidden"></div>
+        </div>
 
         <div id="mcStats" class="note hidden">
-          <strong>Monte-Carlo (nominal, Endwert):</strong>
-          Median: <span id="mcMedian">—</span> ·
-          P10: <span id="mcP10">—</span> ·
-          P90: <span id="mcP90">—</span> ·
-          Best: <span id="mcBest">—</span> ·
-          Worst: <span id="mcWorst">—</span>
+          <strong>Monte-Carlo (nominal, Endwert)</strong>
+          <span class="mc-pill"><span class="label">Median</span><span id="mcMedian" class="val">—</span></span>
+          <span class="mc-pill"><span class="label">P10</span><span id="mcP10" class="val">—</span></span>
+          <span class="mc-pill"><span class="label">P90</span><span id="mcP90" class="val">—</span></span>
+          <span class="mc-pill good"><span class="label">Best</span><span id="mcBest" class="val">—</span></span>
+          <span class="mc-pill bad"><span class="label">Worst</span><span id="mcWorst" class="val">—</span></span>
         </div>
 
         <div class="footnote">
