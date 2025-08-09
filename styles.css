@@ -59,7 +59,7 @@ input:focus, select:focus, button:focus{
   color:var(--accent);padding:8px 10px;border-radius:10px;border:1px solid rgba(99,245,198,0.3);
 }
 
-.note{color:var(--muted);font-size:0.9rem}
+.note{color:var(--muted);font-size:0.95rem}
 .micro{color:var(--muted);font-size:0.8rem;margin-top:-4px}
 .sep{border:none;border-top:1px solid rgba(150,190,255,0.12);margin:8px 0 4px}
 
@@ -89,7 +89,7 @@ input:focus, select:focus, button:focus{
   border-radius:14px;padding:14px 16px;margin:12px 0;box-shadow: var(--glow);
 }
 .stat .label{color:#cbd9ee}
-.value{font-size:1.8rem;font-weight:800;letter-spacing:0.3px}
+.value{font-size:1.9rem;font-weight:800;letter-spacing:0.3px}
 .value.dim{opacity:0.9}
 
 #fvNominal{
@@ -98,7 +98,33 @@ input:focus, select:focus, button:focus{
   text-shadow: 0 0 30px rgba(99,245,198,0.25);
 }
 
-#chart{width:100%;height:auto;display:block;margin:10px 0 4px;filter: drop-shadow(0 10px 18px rgba(0,0,0,0.55))}
+/* Chart + Tooltip */
+#chartWrap{position:relative; margin-top:8px}
+#chart{width:100%;height:auto;display:block;margin:10px 0 4px;filter: drop-shadow(0 10px 18px rgba(0,0,0,0.55)); image-rendering: crisp-edges;}
+
+#hoverTip{
+  position:absolute; pointer-events:none; transform:translate(-50%,-100%);
+  background: rgba(10,14,20,0.94);
+  border:1px solid rgba(160,200,255,0.25);
+  padding:6px 8px; border-radius:10px; font-size:13.5px; color:var(--text);
+  box-shadow: var(--glow); white-space:nowrap; z-index:2;
+}
+
 .footer{margin:18px 2px 36px;display:flex;gap:10px;flex-wrap:wrap;color:var(--muted)}
 .accent{color:var(--accent)}
 code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#b7d8ff}
+
+/* MC-Stats als Pills */
+#mcStats{ font-size:1rem; margin-top:10px }
+#mcStats strong{ display:block; margin-bottom:8px; font-size:1.05rem; color:#cfe3ff }
+.mc-pill{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 10px; margin:4px 6px 0 0; border-radius:999px;
+  background: rgba(106,194,255,0.14);
+  border:1px solid rgba(160,200,255,0.22);
+  box-shadow: var(--glow);
+}
+.mc-pill .label{ color:#cbd9ee; opacity:0.95 }
+.mc-pill .val{ color:var(--accent); font-weight:800; letter-spacing:0.2px }
+.mc-pill.good{ background: rgba(99,245,198,0.14); border-color: rgba(99,245,198,0.28) }
+.mc-pill.bad{ background: rgba(255,120,120,0.08); border-color: rgba(255,120,120,0.22) }
