@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Was-wäre-wenn Investiert? • Mini-Rechner</title>
+  <title>Was wäre, wenn ich’s investiert hätte?</title>
   <link rel="stylesheet" href="styles.css" />
   <meta name="color-scheme" content="dark light">
 </head>
@@ -11,7 +11,7 @@
   <div class="wrap">
     <header class="header glass">
       <h1>Was wäre, wenn ich’s investiert hätte?</h1>
-      <p class="sub">Kleinen Betrag eintippen. Sehen, was er in einem breiten ETF über die Jahre wird.</p>
+      <p class="sub">Tippe einen Betrag ein. Lass die Vergangenheit Chaos in deine Zukunftsprojektion bringen.</p>
     </header>
 
     <main class="grid">
@@ -43,16 +43,16 @@
           </div>
 
           <div class="row">
-            <label for="years">Anlagehorizont: <output id="yearsOut">40</output> Jahre</label>
-            <input id="years" type="range" min="5" max="50" value="40" step="1">
+            <label for="years">Anlagehorizont: <output id="yearsOut">30</output> Jahre</label>
+            <input id="years" type="range" min="5" max="50" value="30" step="1">
           </div>
 
           <div class="row two">
             <div>
-              <label for="return">Rendite p.a. (%)</label>
+              <label for="return">Fixe Rendite p.a. (%)</label>
               <input id="return" type="number" min="0" step="0.1" value="8">
             </div>
-            <div class="note">Historische, grobe Annahme. Kein Versprechen, nur Mathe.</div>
+            <div class="note">Nur aktiv, wenn die historische Simulation aus ist.</div>
           </div>
 
           <div class="row toggle-row">
@@ -79,7 +79,28 @@
           <div id="taxGroup" class="row hidden">
             <label for="tax">Steuersatz (%)</label>
             <input id="tax" type="number" min="0" step="0.1" value="27.5">
-            <p class="micro">Vereinfachtes Modell: Einmalige Endbesteuerung auf Gewinne.</p>
+            <p class="micro">Einmalige Endbesteuerung auf Gewinne. Kein Steuerseminar.</p>
+          </div>
+
+          <hr class="sep">
+
+          <div class="row toggle-row">
+            <label class="switch">
+              <input id="useHistorical" type="checkbox" checked>
+              <span class="slider"></span>
+            </label>
+            <span>Historische Simulation (MSCI World)</span>
+          </div>
+
+          <div class="row two">
+            <div>
+              <label for="runs">Monte-Carlo Läufe</label>
+              <input id="runs" type="number" min="100" max="5000" step="100" value="1000">
+            </div>
+            <div style="display:flex;align-items:end;gap:8px">
+              <button id="reroll" type="button" class="btn">Einzelpfad neu würfeln</button>
+              <button id="runMC" type="button" class="btn">Monte-Carlo starten</button>
+            </div>
           </div>
         </form>
       </section>
@@ -91,12 +112,10 @@
           <div class="label">Zukunftswert (nominal)</div>
           <div id="fvNominal" class="value">—</div>
         </div>
-
         <div id="fvRealRow" class="stat hidden">
           <div class="label">Zukunftswert (real)</div>
           <div id="fvReal" class="value dim">—</div>
         </div>
-
         <div id="fvAfterTaxRow" class="stat hidden">
           <div class="label">Zukunftswert (nach Steuer)</div>
           <div id="fvAfterTax" class="value dim">—</div>
@@ -104,17 +123,24 @@
 
         <canvas id="chart" width="900" height="240" aria-label="Wachstum über die Zeit"></canvas>
 
+        <div id="mcStats" class="note hidden">
+          <strong>Monte-Carlo (nominal, Endwert):</strong>
+          Median: <span id="mcMedian">—</span> ·
+          P10: <span id="mcP10">—</span> ·
+          P90: <span id="mcP90">—</span> ·
+          Best: <span id="mcBest">—</span> ·
+          Worst: <span id="mcWorst">—</span>
+        </div>
+
         <div class="footnote">
-          Mathe-Grundlagen:
-          <code>fv(pv, r, y) = pv · (1+r)^y</code>,
-          <code>fvSeries(pmt, r, y, f) = pmt · ((1+r/f)^(y·f) − 1) / (r/f)</code>
+          Historische Renditen: zufällige Jahreswerte aus einer MSCI-World-Jahresliste (Crashs inklusive). Alles client-side.
         </div>
       </section>
     </main>
 
     <footer class="footer">
-      <span>100% client-side. Keine Daten werden gespeichert. </span>
-      <span class="accent">ETF statt Impulskauf. Manchmal.</span>
+      <span>100% client-side. Keine Daten werden gespeichert.</span>
+      <span class="accent">Mathe, Glühen und ein Hauch Realität.</span>
     </footer>
   </div>
 
