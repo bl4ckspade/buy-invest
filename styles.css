@@ -1,0 +1,136 @@
+:root{
+  --bg:#0e1116;
+  --card:#121722dd;
+  --text:#e8f0ff;
+  --muted:#a5b3c7;
+  --accent:#63f5c6;      /* mint */
+  --accent2:#6ac2ff;     /* light blue */
+  --shadow: 0 10px 30px rgba(0,0,0,0.5);
+  --glow: 0 0 30px rgba(99,245,198,0.25), 0 0 60px rgba(106,194,255,0.15);
+  --radius:16px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 15% -10%, rgba(99,245,198,0.08), transparent 60%),
+    radial-gradient(1000px 500px at 110% 0%, rgba(106,194,255,0.10), transparent 60%),
+    var(--bg);
+  color:var(--text);
+}
+
+.wrap{max-width:1100px;margin:40px auto;padding:0 16px}
+.header{
+  padding:28px 24px;
+  margin-bottom:18px;
+  box-shadow: var(--shadow), var(--glow);
+}
+.header h1{margin:0 0 6px;font-weight:700;letter-spacing:0.2px}
+.header .sub{margin:0;color:var(--muted)}
+
+.grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:18px;
+}
+@media (max-width:900px){
+  .grid{grid-template-columns:1fr}
+}
+
+.card{
+  padding:22px;
+  border-radius:var(--radius);
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(180,220,255,0.08);
+  box-shadow: var(--shadow), var(--glow);
+}
+
+.glass{
+  background: linear-gradient(180deg, rgba(18,23,34,0.9), rgba(18,23,34,0.75));
+  backdrop-filter: blur(8px);
+}
+
+.row{margin:14px 0; display:flex; flex-direction:column; gap:8px}
+.row.two{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+.row.toggle-row{flex-direction:row; align-items:center; gap:10px}
+.hidden{display:none}
+
+label{color:#cfe3ff; font-weight:600}
+input, select{
+  background:#0b0f15;
+  color:var(--text);
+  border:1px solid rgba(150,190,255,0.18);
+  border-radius:12px;
+  padding:10px 12px;
+  outline:none;
+  box-shadow: inset 0 0 0 1px transparent;
+}
+input:focus, select:focus{
+  box-shadow: 0 0 0 2px rgba(99,245,198,0.35), 0 0 30px rgba(106,194,255,0.2);
+  border-color: rgba(99,245,198,0.55);
+}
+
+.input-with-prefix{display:flex; align-items:center; gap:8px}
+.input-with-prefix span{
+  background: linear-gradient(180deg, rgba(99,245,198,0.15), rgba(106,194,255,0.12));
+  color:var(--accent);
+  padding:8px 10px;
+  border-radius:10px;
+  border:1px solid rgba(99,245,198,0.3);
+}
+
+.note{color:var(--muted); font-size:0.9rem}
+.micro{color:var(--muted); font-size:0.8rem; margin-top:-4px}
+
+.switch{position:relative; display:inline-block; width:48px; height:28px}
+.switch input{display:none}
+.slider{
+  position:absolute; cursor:pointer; inset:0;
+  background:#202736; border-radius:999px;
+  transition:.2s;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+.slider:before{
+  content:""; position:absolute; height:22px; width:22px; left:3px; top:3px;
+  background: radial-gradient(circle at 30% 30%, var(--accent), var(--accent2));
+  border-radius:50%;
+  transition:.2s;
+  box-shadow: 0 4px 14px rgba(99,245,198,0.4);
+}
+.switch input:checked + .slider{background:linear-gradient(90deg, rgba(99,245,198,0.25), rgba(106,194,255,0.25))}
+.switch input:checked + .slider:before{transform:translateX(20px)}
+
+.results h2{margin:4px 0 16px}
+
+.stat{
+  display:flex; justify-content:space-between; align-items:end;
+  background: linear-gradient(180deg, rgba(12,16,22,0.55), rgba(12,16,22,0.25));
+  border:1px solid rgba(160,200,255,0.12);
+  border-radius:14px; padding:14px 16px; margin:12px 0;
+  box-shadow: var(--glow);
+}
+.stat .label{color:#cbd9ee}
+.value{font-size:1.8rem; font-weight:800; letter-spacing:0.3px}
+.value.dim{opacity:0.9}
+
+#fvNominal{
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  text-shadow: 0 0 30px rgba(99,245,198,0.25);
+}
+
+#chart{
+  width:100%; height:auto; display:block; margin:10px 0 4px;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.55));
+}
+
+.footer{
+  margin:18px 2px 36px;
+  display:flex; gap:10px; flex-wrap:wrap; color:var(--muted)
+}
+.accent{color:var(--accent)}
+code{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color:#b7d8ff}
