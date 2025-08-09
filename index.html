@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Was-wäre-wenn Investiert? • Mini-Rechner</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="color-scheme" content="dark light">
+</head>
+<body>
+  <div class="wrap">
+    <header class="header glass">
+      <h1>Was wäre, wenn ich’s investiert hätte?</h1>
+      <p class="sub">Kleinen Betrag eintippen. Sehen, was er in einem breiten ETF über die Jahre wird.</p>
+    </header>
+
+    <main class="grid">
+      <section class="card glass">
+        <form id="form" autocomplete="off">
+          <div class="row">
+            <label for="amount">Betrag (€)</label>
+            <div class="input-with-prefix">
+              <span>€</span>
+              <input id="amount" type="number" min="0" step="0.01" value="30" inputmode="decimal">
+            </div>
+          </div>
+
+          <div class="row toggle-row">
+            <label class="switch">
+              <input id="isRecurring" type="checkbox">
+              <span class="slider"></span>
+            </label>
+            <span>Wiederkehrend?</span>
+          </div>
+
+          <div id="recurringGroup" class="row hidden">
+            <label for="frequency">Frequenz</label>
+            <select id="frequency">
+              <option value="365">Täglich</option>
+              <option value="52">Wöchentlich</option>
+              <option value="12" selected>Monatlich</option>
+            </select>
+          </div>
+
+          <div class="row">
+            <label for="years">Anlagehorizont: <output id="yearsOut">40</output> Jahre</label>
+            <input id="years" type="range" min="5" max="50" value="40" step="1">
+          </div>
+
+          <div class="row two">
+            <div>
+              <label for="return">Rendite p.a. (%)</label>
+              <input id="return" type="number" min="0" step="0.1" value="8">
+            </div>
+            <div class="note">Historische, grobe Annahme. Kein Versprechen, nur Mathe.</div>
+          </div>
+
+          <div class="row toggle-row">
+            <label class="switch">
+              <input id="useInflation" type="checkbox">
+              <span class="slider"></span>
+            </label>
+            <span>Inflation berücksichtigen</span>
+          </div>
+
+          <div id="inflationGroup" class="row hidden">
+            <label for="inflation">Inflation p.a. (%)</label>
+            <input id="inflation" type="number" min="0" step="0.1" value="2.0">
+          </div>
+
+          <div class="row toggle-row">
+            <label class="switch">
+              <input id="useTax" type="checkbox">
+              <span class="slider"></span>
+            </label>
+            <span>Steuer auf Gewinne</span>
+          </div>
+
+          <div id="taxGroup" class="row hidden">
+            <label for="tax">Steuersatz (%)</label>
+            <input id="tax" type="number" min="0" step="0.1" value="27.5">
+            <p class="micro">Vereinfachtes Modell: Einmalige Endbesteuerung auf Gewinne.</p>
+          </div>
+        </form>
+      </section>
+
+      <section class="card glass results">
+        <h2>Ergebnis</h2>
+
+        <div class="stat">
+          <div class="label">Zukunftswert (nominal)</div>
+          <div id="fvNominal" class="value">—</div>
+        </div>
+
+        <div id="fvRealRow" class="stat hidden">
+          <div class="label">Zukunftswert (real)</div>
+          <div id="fvReal" class="value dim">—</div>
+        </div>
+
+        <div id="fvAfterTaxRow" class="stat hidden">
+          <div class="label">Zukunftswert (nach Steuer)</div>
+          <div id="fvAfterTax" class="value dim">—</div>
+        </div>
+
+        <canvas id="chart" width="900" height="240" aria-label="Wachstum über die Zeit"></canvas>
+
+        <div class="footnote">
+          Mathe-Grundlagen:
+          <code>fv(pv, r, y) = pv · (1+r)^y</code>,
+          <code>fvSeries(pmt, r, y, f) = pmt · ((1+r/f)^(y·f) − 1) / (r/f)</code>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>100% client-side. Keine Daten werden gespeichert. </span>
+      <span class="accent">ETF statt Impulskauf. Manchmal.</span>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
